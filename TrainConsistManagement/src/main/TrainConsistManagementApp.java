@@ -8,9 +8,23 @@ public class TrainConsistManagementApp {
     public static void main(String[] args) {
         System.out.println("=== Train Consist Management App ===");
         List<String> trainConsist = new ArrayList<>();
-        System.out.println("Train consist initialized successfully.");
-        System.out.println("Current Bogie Count : "
-                + trainConsist.size());
-        System.out.println("Program is ready for further operations.");
+        // Add Passenger Bogies
+        trainConsist.add("Sleeper");
+        trainConsist.add("AC Chair");
+        trainConsist.add("First Class");
+
+        System.out.println("\nAfter Adding Bogies:");
+        System.out.println(trainConsist);
+
+        trainConsist.remove("AC Chair");
+
+        System.out.println("\nAfter Removing AC Chair:");
+        System.out.println(trainConsist);
+
+        boolean isSleeperPresent = trainConsist.contains("Sleeper");
+
+        System.out.println("\nIs Sleeper Bogie Present? " + isSleeperPresent);
+        System.out.println("\nFinal Train Consist:");
+        System.out.println(trainConsist);
     }
 }
