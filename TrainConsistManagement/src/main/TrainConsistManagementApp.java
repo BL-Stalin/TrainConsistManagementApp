@@ -4,8 +4,6 @@ import main.model.Bogie;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class TrainConsistManagementApp {
 
@@ -25,23 +23,16 @@ public class TrainConsistManagementApp {
                 "Passenger",
                 24));
         bogies.add(new Bogie(
-                "Cargo A",
-                "Goods",
-                100));
-        bogies.add(new Bogie(
-                "Cargo B",
-                "Goods",
-                120));
+                "General",
+                "Passenger",
+                90));
 
-        Map<String, List<Bogie>> groupedBogies =
-                bogies.stream()
-                        .collect(Collectors.groupingBy(
-                                Bogie::getType));
+        System.out.println("\nTrain Bogies:");
+        bogies.forEach(System.out::println);
 
-        System.out.println("\nGrouped Bogies:");
-        groupedBogies.forEach((type, bogieList) -> {
-            System.out.println("\n" + type + " Bogies:");
-            bogieList.forEach(System.out::println);
-        });
+        int totalSeats = bogies.stream()
+                .map(Bogie::getCapacity)
+                .reduce(0, Integer::sum);
+        System.out.println("\nTotal Seating Capacity : " + totalSeats);
     }
 }
