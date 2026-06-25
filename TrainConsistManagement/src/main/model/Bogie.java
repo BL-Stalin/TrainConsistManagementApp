@@ -3,15 +3,21 @@ package main.model;
 public class Bogie {
 
     private String name;
+    private String type;
     private int capacity;
 
-    public Bogie(String name, int capacity) {
+    public Bogie(String name, String type, int capacity) {
         this.name = name;
+        this.type = type;
         this.capacity = capacity;
     }
 
     public String getName() {
         return name;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public int getCapacity() {
@@ -20,7 +26,9 @@ public class Bogie {
 
     @Override
     public String toString() {
-        return "Bogie Name : " + name +
-                ", Capacity : " + capacity;
+        return "Bogie{name='" + name +
+                "', type='" + type +
+                "', capacity=" + capacity +
+                '}';
     }
 }
