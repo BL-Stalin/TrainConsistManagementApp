@@ -1,47 +1,87 @@
 package main;
 
-import main.model.GoodsBogie;
+import main.model.Bogie;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TrainConsistManagementApp {
 
     public static void main(String[] args) {
 
-        System.out.println("=== Train Consist Management App ===");
+        System.out.println(
+                "=== Train Consist Management App ===");
 
-        List<GoodsBogie> goodsBogies = new ArrayList<>();
+        List<Bogie> bogies = new ArrayList<>();
 
-        goodsBogies.add(new GoodsBogie(
-                "BG101",
-                "Cylindrical",
-                "Petroleum"));
-        goodsBogies.add(new GoodsBogie(
-                "BG102",
-                "Open",
-                "Coal"));
-        goodsBogies.add(new GoodsBogie(
-                "BG103",
-                "Covered",
-                "Food Grains"));
-        System.out.println("\nGoods Bogies:");
+        // Create large dataset
+        for (int i = 1; i <= 100000; i++) {
 
-        goodsBogies.forEach(System.out::println);
-        boolean isSafetyCompliant = goodsBogies.stream()
-                .allMatch(bogie ->
-                        !bogie.getBogieType()
-                                .equalsIgnoreCase(
-                                        "Cylindrical") ||
-                                bogie.getCargoType()
-                                        .equalsIgnoreCase(
-                                                "Petroleum"));
-
-        System.out.println("\nSafety Compliance Status : " + isSafetyCompliant);
-        if (isSafetyCompliant) {
-            System.out.println("Train is SAFE for operation.");
-        } else {
-            System.out.println("Train FAILED safety compliance check.");
+            bogies.add(
+                    new Bogie(
+                            "Sleeper-" + i,
+                            "Passenger",
+                            i % 100));
         }
+
+        // -----------------------------
+        // Loop Based Filtering
+        // -----------------------------
+        long loopStartTime =
+                System.nanoTime();
+
+        List<Bogie> loopResult =
+                new ArrayList<>();
+
+        for (Bogie bogie : bogies) {
+
+            if (bogie.getCapacity() > 60) {
+                loopResult.add(bogie);
+            }
+        }
+
+        long loopEndTime =
+                System.nanoTime();
+
+        long loopExecutionTime =
+                loopEndTime - loopStartTime;
+
+        // -----------------------------
+        // Stream Based Filtering
+        // -----------------------------
+        long streamStartTime =
+                System.nanoTime();
+
+        List<Bogie> streamResult =
+                bogies.stream()
+                        .filter(
+                                bogie ->
+                                        bogie.getCapacity() > 60)
+                        .collect(Collectors.toList());
+
+        long streamEndTime =
+                System.nanoTime();
+
+        long streamExecutionTime =
+                streamEndTime - streamStartTime;
+
+        System.out.println(
+                "\nLoop Result Count : "
+                        + loopResult.size());
+
+        System.out.println(
+                "Loop Execution Time : "
+                        + loopExecutionTime
+                        + " ns");
+
+        System.out.println(
+                "\nStream Result Count : "
+                        + streamResult.size());
+
+        System.out.println(
+                "Stream Execution Time : "
+                        + streamExecutionTime
+                        + " ns");
     }
 }
