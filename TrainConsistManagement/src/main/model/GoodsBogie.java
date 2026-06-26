@@ -3,34 +3,36 @@ package main.model;
 public class GoodsBogie {
 
     private String bogieId;
-    private String bogieType;
+    private String shape;
     private String cargoType;
 
     public GoodsBogie(String bogieId,
-                      String bogieType,
-                      String cargoType) {
+                      String shape) {
         this.bogieId = bogieId;
-        this.bogieType = bogieType;
-        this.cargoType = cargoType;
+        this.shape = shape;
     }
 
     public String getBogieId() {
         return bogieId;
     }
 
-    public String getBogieType() {
-        return bogieType;
+    public String getShape() {
+        return shape;
     }
 
     public String getCargoType() {
         return cargoType;
     }
 
+    public void setCargoType(String cargoType) {
+        this.cargoType = cargoType;
+    }
+
     @Override
     public String toString() {
         return "GoodsBogie{" +
                 "bogieId='" + bogieId + '\'' +
-                ", bogieType='" + bogieType + '\'' +
+                ", shape='" + shape + '\'' +
                 ", cargoType='" + cargoType + '\'' +
                 '}';
     }

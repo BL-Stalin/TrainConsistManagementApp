@@ -1,32 +1,28 @@
 package main;
 
-
-import main.exception.InvalidCapacityException;
-import main.model.PassengerBogie;
+import main.model.GoodsBogie;
+import main.service.CargoAssignmentService;
 
 public class TrainConsistManagementApp {
 
     public static void main(String[] args) {
-        System.out.println("=== Train Consist Management App ===");
-        try {
-            PassengerBogie sleeper =
-                    new PassengerBogie(
-                            "Sleeper",
-                            72);
-            System.out.println(
-                    "\nBogie Created Successfully:");
-            System.out.println(sleeper);
-            PassengerBogie invalidBogie =
-                    new PassengerBogie(
-                            "AC Chair",
-                            -10);
-            System.out.println(invalidBogie);
-        } catch (InvalidCapacityException exception) {
-            System.out.println(
-                    "\nError: "
-                            + exception.getMessage());
-        }
+
         System.out.println(
-                "\nProgram Continues Safely...");
+                "=== Train Consist Management App ===");
+
+        CargoAssignmentService service =
+                new CargoAssignmentService();
+
+        GoodsBogie bogie =
+                new GoodsBogie(
+                        "BG101",
+                        "Rectangular");
+
+        service.assignCargo(
+                bogie,
+                "Petroleum");
+
+        System.out.println(
+                "\nApplication Continues Running...");
     }
 }
