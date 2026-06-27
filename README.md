@@ -100,13 +100,3 @@ java main.TrainConsistManagementApp
 ```
 
 ---
-
-## 📅 Development Timeline & Best Practices
-
-This project was built over a structured 4-day sprint from **June 24, 2026** to **June 27, 2026**.
-
-### 🌟 Git Best Practices Implemented:
-- **Sole Contributor:** All commits are cleanly attributed to one unified identity (`Stalin`).
-- **Semantic Branching:** Each feature branch represents exactly one Use Case (`feature/UCX-description`).
-- **Standardized Commit Messages:** Messages follow the format: `[Stalin] Added : UCX - Description of the implemented functionality`.
-- **Merge/PR Workflow:** Every feature branch was integrated into `dev` via formal, clean pull requests.
